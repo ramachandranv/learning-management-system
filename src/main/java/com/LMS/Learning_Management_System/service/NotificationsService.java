@@ -80,6 +80,4 @@ public class NotificationsService {
             throw new IllegalArgumentException("ID mismatch. Please provide the correct ID.");
         }
     }
-
-
 }
