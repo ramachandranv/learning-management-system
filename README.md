@@ -50,16 +50,32 @@ Copy code
 git clone https://github.com/yourusername/Learning_Management_System.git
 Navigate to the project directory:
 
-bash
-Copy code
+```bash
 cd Learning_Management_System
-Set up the database and configure application.properties with your database credentials.
+```
+
+Set up environment variables:
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Edit `.env` file with your actual database credentials:
+```bash
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_secure_database_password
+DB_URL=jdbc:mysql://localhost:3306/lms
+```
+
+3. **Security Note**: Never commit the `.env` file to version control. Use strong passwords with at least 12 characters including uppercase, lowercase, numbers, and special characters.
 
 Build and run the application:
 
-bash
-Copy code
+```bash
 mvn spring-boot:run
+```
+
 Access the application at http://localhost:8080.
 
 Contributing

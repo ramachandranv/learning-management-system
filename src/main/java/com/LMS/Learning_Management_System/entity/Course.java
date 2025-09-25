@@ -46,7 +46,6 @@ public class Course {
         this.media = media;
         this.duration = duration;
         this.creationDate = creationDate;
-        this.lessons = lessons;
     }
 
     public int getCourseId() {
