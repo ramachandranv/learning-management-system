@@ -150,7 +150,7 @@ public class QuizService {
         } else if(loggedInUser.getUserTypeId().getUserTypeId()==2)
         {
             boolean enrolled = enrollmentRepository.existsByStudentAndCourse(studentRepository.findById(loggedInUser.getUserId())
-                    .orElseThrow(() -> new IllegalArgumentException("No student found with this ID!")),quiz.getCourse());
+                    .orElseThrow(() -> new IllegalArgumentException(NO_STUDENT_FOUND_MESSAGE)),quiz.getCourse());
             if(!enrolled)
                 throw new IllegalArgumentException("You don't have permission to enter this course.");
             if(quiz.getCreationDate().getTime()+ 15 * 60 * 1000<new Date().getTime())
@@ -258,12 +258,10 @@ public class QuizService {
         } else if(loggedInUser.getUserTypeId().getUserTypeId()==2)
         {
             boolean enrolled = enrollmentRepository.existsByStudentAndCourse(studentRepository.findById(loggedInUser.getUserId())
-                            .orElseThrow(() -> new IllegalArgumentException("No student found with this ID!"))
+                            .orElseThrow(() -> new IllegalArgumentException(NO_STUDENT_FOUND_MESSAGE))
                     ,quiz.getCourse());
             if(!enrolled)
                 throw new IllegalArgumentException("You don't have permission to enter this course.");
-//            if(quiz.getCreationDate().getTime()+15<new Date().getTime())
-//                throw new IllegalArgumentException("The quiz has been finished!");
         }
 
         return new QuizDto(
@@ -411,7 +409,7 @@ public class QuizService {
         } else if(loggedInUser.getUserTypeId().getUserTypeId()==2)
         {
             boolean enrolled = enrollmentRepository.existsByStudentAndCourse(studentRepository.findById(loggedInUser.getUserId())
-                    .orElseThrow(() -> new IllegalArgumentException("No student found with this ID!")),quiz.getCourse());
+                    .orElseThrow(() -> new IllegalArgumentException(NO_STUDENT_FOUND_MESSAGE)),quiz.getCourse());
             if(!enrolled)
                 throw new IllegalArgumentException("You don't have permission to enter this course.");
             if(loggedInUser.getUserId()!=studentId)
