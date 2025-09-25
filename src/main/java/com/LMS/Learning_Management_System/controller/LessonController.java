@@ -4,7 +4,6 @@ import com.LMS.Learning_Management_System.dto.LessonDto;
 import com.LMS.Learning_Management_System.entity.Lesson;
 import com.LMS.Learning_Management_System.service.LessonService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/lesson")
 public class LessonController {
-    @Autowired
     private final LessonService lessonService;
+    
     public LessonController(LessonService lessonService) {
         this.lessonService = lessonService;
     }
