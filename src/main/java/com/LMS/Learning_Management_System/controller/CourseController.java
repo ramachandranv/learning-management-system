@@ -2,7 +2,6 @@ package com.LMS.Learning_Management_System.controller;
 
 import com.LMS.Learning_Management_System.dto.CourseDto;
 import com.LMS.Learning_Management_System.entity.Course;
-import com.LMS.Learning_Management_System.entity.Lesson;
 import com.LMS.Learning_Management_System.service.CourseService;
 import jakarta.servlet.http.HttpServletRequest;
 
