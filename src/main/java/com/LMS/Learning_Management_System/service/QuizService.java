@@ -16,6 +16,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 @Service
@@ -41,7 +42,7 @@ public class QuizService {
     private final EnrollmentRepository enrollmentRepository;
     private final NotificationsService notificationsService;
     private final EnrollmentService enrollmentService;
-    private final Random random = new Random();
+    private final SecureRandom secureRandom = new SecureRandom();
     List<Question> quizQuestions = new ArrayList<>();
     List<Answer> quizAnswers = new ArrayList<>();
     List<Question>questionBank= new ArrayList<>();
@@ -231,7 +232,7 @@ public class QuizService {
         Set<Integer> selectedIndices = new HashSet<>();  // To track selected indices
         int count = 0;
         while (count < 5) {
-            int randomNumber = random.nextInt(allQuestions.size());
+            int randomNumber = secureRandom.nextInt(allQuestions.size());
 
             if (!selectedIndices.contains(randomNumber)) {
                 selectedIndices.add(randomNumber);
