@@ -4,17 +4,12 @@ import com.LMS.Learning_Management_System.dto.AssignmentDto;
 import com.LMS.Learning_Management_System.dto.GetFeedbackDto;
 import com.LMS.Learning_Management_System.dto.GradeAssignmentDto;
 import com.LMS.Learning_Management_System.dto.SaveAssignmentDto;
-import com.LMS.Learning_Management_System.entity.Assignment;
-import com.LMS.Learning_Management_System.entity.Course;
-import com.LMS.Learning_Management_System.entity.Student;
-import com.LMS.Learning_Management_System.entity.Submission;
 import com.LMS.Learning_Management_System.service.AssignmentService;
 import com.LMS.Learning_Management_System.service.NotificationsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.LMS.Learning_Management_System.controller;
 
 import com.LMS.Learning_Management_System.dto.LessonDto;
-import com.LMS.Learning_Management_System.entity.Course;
 import com.LMS.Learning_Management_System.entity.Lesson;
 import com.LMS.Learning_Management_System.service.LessonService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +29,7 @@ public class LessonController {
         }
     }
     @GetMapping("/get_all_lessons/{courseId}")
-    public ResponseEntity<?> getAllLessons(@PathVariable int courseId , HttpServletRequest request) {
+    public ResponseEntity<Object> getAllLessons(@PathVariable int courseId , HttpServletRequest request) {
         try {
             List<LessonDto> lessons = lessonService.getLessonsByCourseId(courseId , request);
             return ResponseEntity.ok(lessons);
@@ -39,7 +38,7 @@ public class LessonController {
         }
     }
     @GetMapping("/lesson_id/{lessonId}")
-    public ResponseEntity<?> getLessonById(@PathVariable int lessonId , HttpServletRequest request) {
+    public ResponseEntity<Object> getLessonById(@PathVariable int lessonId , HttpServletRequest request) {
         try {
             LessonDto lesson = lessonService.getLessonById(lessonId, request);
             return ResponseEntity.ok(lesson);
@@ -70,7 +69,7 @@ public class LessonController {
         }
     }
     @PostMapping("/studnet_enter_lesson/course_id/{courseId}/lesson_id/{lessonId}/otp/{otp}")
-    public ResponseEntity<?> StudentEnterLesson(@PathVariable int courseId ,
+    public ResponseEntity<Object> studentEnterLesson(@PathVariable int courseId ,
                                                 @PathVariable int lessonId ,
                                                 @PathVariable String otp ,
                                                 HttpServletRequest request) {
