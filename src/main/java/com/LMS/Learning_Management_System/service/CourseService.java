@@ -3,6 +3,7 @@ package com.LMS.Learning_Management_System.service;
 import com.LMS.Learning_Management_System.dto.CourseDto;
 import com.LMS.Learning_Management_System.dto.StudentDto;
 import com.LMS.Learning_Management_System.entity.*;
+import com.LMS.Learning_Management_System.exception.FileUploadException;
 import com.LMS.Learning_Management_System.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -98,7 +98,7 @@ public class CourseService {
     }
     public void updateCourse(int courseId, Course updatedCourse, HttpServletRequest request) {
 
-        Course existingCourse = check_before_logic(courseId , request);
+        Course existingCourse = checkBeforeLogic(courseId , request);
         existingCourse.setCourseName(updatedCourse.getCourseName());
         existingCourse.setDescription(updatedCourse.getDescription());
         existingCourse.setDuration(updatedCourse.getDuration());
@@ -106,11 +106,11 @@ public class CourseService {
         courseRepository.save(existingCourse);
     }
     public void deleteCourse(int courseId, HttpServletRequest request) {
-        Course existingCourse = check_before_logic(courseId , request);
+        Course existingCourse = checkBeforeLogic(courseId , request);
         courseRepository.delete(existingCourse);
     }
     public void uploadMediaFile(int courseId, MultipartFile file, HttpServletRequest request) {
-        Course course = check_before_logic(courseId , request);
+        Course course = checkBeforeLogic(courseId , request);
 
         String uploadDir = "media/uploads/";
         File directory = new File(uploadDir);
@@ -124,7 +124,7 @@ public class CourseService {
         try {
             file.transferTo(destination);
         } catch (IOException e) {
-            throw new RuntimeException("File upload failed.", e);
+            throw new FileUploadException("File upload failed.", e);
         }
 
         course.setMedia(fileName);
@@ -134,7 +134,7 @@ public class CourseService {
 
 
 
-    private Course check_before_logic(int courseId, HttpServletRequest request)
+    private Course checkBeforeLogic(int courseId, HttpServletRequest request)
     {
         Users loggedInInstructor = (Users) request.getSession().getAttribute("user");
         if (loggedInInstructor == null) {
@@ -162,7 +162,7 @@ public class CourseService {
                         course.getMedia(),
                         course.getInstructorId().getFirstName()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void sendNotificationsToEnrolledStudents(int courseId, HttpServletRequest request){
