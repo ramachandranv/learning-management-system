@@ -43,7 +43,7 @@ public class QuizController {
     public ResponseEntity<Object> addQuiz(@RequestBody QuizDto quizDto, HttpServletRequest request)
     {
         try {
-            int quizId = quizService.Create(quizDto.getCourse_id(),quizDto.getType(), request);
+            int quizId = quizService.create(quizDto.getCourse_id(),quizDto.getType(), request);
             return ResponseEntity.ok("Quiz created successfully. Use this id: "+quizId+" to enter the quiz");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
